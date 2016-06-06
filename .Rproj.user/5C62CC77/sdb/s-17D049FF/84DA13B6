@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(XML)\nxml.url <- \"telemed_trials_may30.xml\"",
+    "created" : 1465243951718.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1567203616",
+    "id" : "84DA13B6",
+    "lastKnownWriteTime" : 1465244090,
+    "last_content_update" : 1465244090725,
+    "path" : "C:/Users/c234059/Box Sync/clinical_trials/read_xml.R",
+    "project_path" : "read_xml.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
