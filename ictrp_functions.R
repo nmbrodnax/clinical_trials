@@ -1,7 +1,9 @@
 #Functions for cleaning the ICTRP datasets
 
-standard_date <- function(text) {
-  #returns date in standardized format
+standard_date <- function(char) {
+  #parameter for,at DD/MM/YYYY
+  #returns date in standardized format MM/DD/YYYY
+  date <- paste(substr(char,4,5),"/",substr(char,1,2),"/",substr(char,7,10),sep="")
 }
 
 sponsor_type <- function(text) {
