@@ -26,13 +26,12 @@ def main():
         for term in pair[0]:
             sponsor_categories[term] = pair[1]
 
-    print(sponsor_categories)
+    # print(sponsor_categories)
+    match_list = [x for x in sponsor_categories.keys()]
+    print(match_list)
 
 
-# def sponsor_category(text, category_dict):
-#     """"Classifies sponsor information into one of six categories
-#         str --> str"""
-#     pass
+
 
 
 if __name__ == '__main__':
