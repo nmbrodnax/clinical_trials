@@ -1,4 +1,4 @@
-# Import an XML document and parse tree into python objects
+# Import an XML document and parse tree into list of dictionaries
 
 import xml.etree.ElementTree
 tree = xml.etree.ElementTree.parse('telemed_trials_may30.xml')
@@ -15,4 +15,3 @@ while i < len(root):
         j += 1
     all_trials.append(trial)
     i += 1
-
