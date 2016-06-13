@@ -15,3 +15,5 @@ while i < len(root):
         j += 1
     all_trials.append(trial)
     i += 1
+
+print(all_trials[:10])
