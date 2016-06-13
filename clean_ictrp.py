@@ -31,14 +31,21 @@ def main():
     # print(sponsor_categories)
     match_list = [x for x in sponsor_categories.keys()]
     # print(match_list)
+    test_sponsors = ["Butler Hospital",
+                     "University of Pennsylvania",
+                     "Boston Medical Center",
+                     "National Heart, Lung, and Blood Institute",
+                     "American Academy of Family Physicians"]
+    for sponsor in test_sponsors:
+        print(match_text(sponsor, match_list))
+        print("\n")
 
 
 def match_text(text, match_list):
     """Returns a list of phrases in text from a list of possible phrases
     str, list of str -> list of str"""
-    matches = [match.group(0) for item in match_list for match in
-               [re.search(r'.*(%s).*' % text, item, flags=re.IGNORECASE)]
-               if match]
+    matches = [item for item in match_list for match in
+               [re.search(r'.*(%s).*' % item, text, flags=re.I)] if match]
     return matches
 
 
