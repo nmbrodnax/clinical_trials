@@ -54,9 +54,11 @@ def main():
         "Commercial"
     ]
 
-
-
-
+    for sponsor in test_sponsors:
+        matched_terms = match_text(sponsor, match_list)
+        all_categories = [sponsor_categories.get(match) for match in matches]
+        category = map_category(all_categories, sponsor_category_ranking)
+        print(category, "\n")
 
 
 def match_text(text, match_list):
@@ -69,7 +71,7 @@ def match_text(text, match_list):
 
 def map_category(matches, ranked_list, default_category="Other"):
     """Returns the most likely category based on ranking of categories
-    str -> str"""
+    list, list, str -> str"""
     if len(matches) > 0:
         for category in ranked_list:
             if category in matches:
