@@ -4,6 +4,7 @@ import re
 
 
 def main():
+    # terms that I want to classify into sponsor categories
     hospital_terms = ["hospital", "medical center", "health center", "clinic",
                       "hopitaux", "hospitalier"]
     academic_terms = ["university", "college", "universitas", "universidad"]
@@ -15,6 +16,7 @@ def main():
     commercial_terms = ["AbbVie", "Sanofi", "Pfizer", "Eli Lilly", "Bayer",
                         "Novartis", "GlaxoSmithKline", "Merck"]
 
+    # categories used for different types of sponsors
     categories = [
         (hospital_terms, "Hospital"),
         (academic_terms, "University"),
@@ -23,14 +25,17 @@ def main():
         (commercial_terms, "Commercial")
     ]
 
+    # create a dictionary assigning each term (key) to a category (value)
     sponsor_categories = {}
     for pair in categories:
         for term in pair[0]:
             sponsor_categories[term] = pair[1]
 
-    # print(sponsor_categories)
+    # create a list of just the terms; each sponsor name will be searched
+    # to determine whether it contains one of these terms
     match_list = [x for x in sponsor_categories.keys()]
-    # print(match_list)
+
+    # example sponsor names from the dataset to use for testing
     test_sponsors = ["Butler Hospital",
                      "University of Pennsylvania",
                      "Boston Medical Center",
@@ -38,15 +43,8 @@ def main():
                      "American Academy of Family Physicians",
                      "Kaiser Permanente"]
 
-    # for sponsor in test_sponsors:
-    #     print(match_text(sponsor, match_list))
-    #     print("\n")
-
-    # for sponsor in test_sponsors:
-    #     matches = match_text(sponsor, match_list)
-    #     categories = [sponsor_categories.get(match) for match in matches]
-    #     print(categories)
-
+    # the way to rank categories in case there is a tie (e.g., if matches
+    # include hospital and university, choose hospital)
     sponsor_category_ranking = [
         "Hospital",
         "University",
@@ -54,6 +52,8 @@ def main():
         "NGO",
         "Commercial"
     ]
+
+    # load in data from xml file
 
     for sponsor in test_sponsors:
         matches = match_text(sponsor, match_list)
