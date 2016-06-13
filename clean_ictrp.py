@@ -1,6 +1,7 @@
 # Functions for cleaning the ICTRP data
 
 import re
+import csv
 
 
 def main():
@@ -36,12 +37,12 @@ def main():
     match_list = [x for x in sponsor_categories.keys()]
 
     # example sponsor names from the dataset to use for testing
-    test_sponsors = ["Butler Hospital",
-                     "University of Pennsylvania",
-                     "Boston Medical Center",
-                     "National Heart, Lung, and Blood Institute",
-                     "American Academy of Family Physicians",
-                     "Kaiser Permanente"]
+    # test_sponsors = ["Butler Hospital",
+    #                  "University of Pennsylvania",
+    #                  "Boston Medical Center",
+    #                  "National Heart, Lung, and Blood Institute",
+    #                  "American Academy of Family Physicians",
+    #                  "Kaiser Permanente"]
 
     # the way to rank categories in case there is a tie (e.g., if matches
     # include hospital and university, choose hospital)
@@ -53,13 +54,72 @@ def main():
         "Commercial"
     ]
 
-    # load in data from xml file
+    # load in data from csv file
+    fieldnames = [
+        "TrialID",
+        "Last_Refreshed_on",
+        "Public_title",
+        "Scientific_title",
+        "Acronym",
+        "Primary_sponsor",
+        "Date_registration",
+        "Export_date",
+        "Source_Register",
+        "web_address",
+        "Recruitment_Status",
+        "other_records",
+        "Inclusion_agemin",
+        "Inclusion_agemax",
+        "Inclusion_gender",
+        "Date_enrollement",
+        "Target_size",
+        "Study_type",
+        "Phase",
+        "Countries",
+        "Contact_Lastname",
+        "Contact_Address",
+        "Contact_Email",
+        "Contact_Tel",
+        "Condition",
+        "Intervention",
+        "Primary_outcome",
+        "Secondary_outcome",
+        "Source_Support",
+        "Secondary_Sponsor",
+        "Secondary_ID",
+        "Study_design",
+        "Contact_Firstname",
+        "Contact_Affiliation"
+    ]
 
-    for sponsor in test_sponsors:
-        matches = match_text(sponsor, match_list)
-        all_categories = [sponsor_categories.get(match) for match in matches]
-        category = map_category(all_categories, sponsor_category_ranking)
-        print(category, "\n")
+    with open("telemed_trials.csv", 'r') as csvfile:
+        reader = csv.DictReader(csvfile, fieldnames)
+        all_trials = []
+        for row in reader:
+            all_trials.append(row)
+
+    # create sponsor type counter
+    sponsor_counter = {
+        "Hospital": 0,
+        "University": 0,
+        "Government": 0,
+        "NGO": 0,
+        "Commercial": 0,
+        "Other": 0
+    }
+
+    for trial in all_trials[:10]:
+        print(trial, "\n")
+        # matches = match_text(trial.get("Primary_sponsor"), match_list)
+        # if matches:
+            # print("Matches: " + str(matches) + "\n")
+            # all_categories = [sponsor_categories.get(match) for match in matches]
+            # category = map_category(all_categories, sponsor_category_ranking)
+            # print("Category: " + category + "\n")
+            # trial["Sponsor_Type"] = category
+            # sponsor_counter[category] += 1
+
+    print(sponsor_counter)
 
 
 def match_text(text, match_list):
