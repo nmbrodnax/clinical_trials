@@ -94,6 +94,7 @@ def main():
 
     with open("telemed_trials.csv", 'r') as csvfile:
         reader = csv.DictReader(csvfile, fieldnames)
+        next(reader, None)
         all_trials = []
         for row in reader:
             all_trials.append(row)
@@ -109,15 +110,14 @@ def main():
     }
 
     for trial in all_trials[:10]:
-        print(trial, "\n")
-        # matches = match_text(trial.get("Primary_sponsor"), match_list)
-        # if matches:
-            # print("Matches: " + str(matches) + "\n")
-            # all_categories = [sponsor_categories.get(match) for match in matches]
-            # category = map_category(all_categories, sponsor_category_ranking)
-            # print("Category: " + category + "\n")
-            # trial["Sponsor_Type"] = category
-            # sponsor_counter[category] += 1
+        print(trial.get("Primary_sponsor"))
+        matches = match_text(trial.get("Primary_sponsor"), match_list)
+        print("Matches: " + str(matches))
+        all_categories = [sponsor_categories.get(match) for match in matches]
+        category = map_category(all_categories, sponsor_category_ranking)
+        print("Category: " + category + "\n")
+        trial["Sponsor_Type"] = category
+        sponsor_counter[category] += 1
 
     print(sponsor_counter)
 
