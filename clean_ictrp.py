@@ -35,16 +35,17 @@ def main():
                      "University of Pennsylvania",
                      "Boston Medical Center",
                      "National Heart, Lung, and Blood Institute",
-                     "American Academy of Family Physicians"]
+                     "American Academy of Family Physicians",
+                     "Kaiser Permanente"]
 
-    for sponsor in test_sponsors:
-        print(match_text(sponsor, match_list))
-        print("\n")
+    # for sponsor in test_sponsors:
+    #     print(match_text(sponsor, match_list))
+    #     print("\n")
 
-    for sponsor in test_sponsors:
-        matches = match_text(sponsor, match_list)
-        categories = [sponsor_categories.get(match) for match in matches]
-        print(categories)
+    # for sponsor in test_sponsors:
+    #     matches = match_text(sponsor, match_list)
+    #     categories = [sponsor_categories.get(match) for match in matches]
+    #     print(categories)
 
     sponsor_category_ranking = [
         "Hospital",
@@ -55,7 +56,7 @@ def main():
     ]
 
     for sponsor in test_sponsors:
-        matched_terms = match_text(sponsor, match_list)
+        matches = match_text(sponsor, match_list)
         all_categories = [sponsor_categories.get(match) for match in matches]
         category = map_category(all_categories, sponsor_category_ranking)
         print(category, "\n")
