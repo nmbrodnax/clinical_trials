@@ -36,9 +36,27 @@ def main():
                      "Boston Medical Center",
                      "National Heart, Lung, and Blood Institute",
                      "American Academy of Family Physicians"]
+
     for sponsor in test_sponsors:
         print(match_text(sponsor, match_list))
         print("\n")
+
+    for sponsor in test_sponsors:
+        matches = match_text(sponsor, match_list)
+        categories = [sponsor_categories.get(match) for match in matches]
+        print(categories)
+
+    sponsor_category_ranking = [
+        "Hospital",
+        "University",
+        "Government",
+        "NGO",
+        "Commercial"
+    ]
+
+
+
+
 
 
 def match_text(text, match_list):
@@ -49,12 +67,15 @@ def match_text(text, match_list):
     return matches
 
 
-def sponsor_type(matches, ranked_list):
-    """Returns the most likely sponsor based on ranking of phrases
+def map_category(matches, ranked_list, default_category="Other"):
+    """Returns the most likely category based on ranking of categories
     str -> str"""
-    for sponsor in ranked_list:
-        if sponsor in matches:
-            return sponsor
+    if len(matches) > 0:
+        for category in ranked_list:
+            if category in matches:
+                return category
+    else:
+        return default_category
 
 
 if __name__ == '__main__':
