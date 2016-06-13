@@ -1,5 +1,7 @@
 # Functions for cleaning the ICTRP data
 
+import re
+
 
 def main():
     hospital_terms = ["hospital", "medical center", "health center", "clinic",
@@ -28,10 +30,24 @@ def main():
 
     # print(sponsor_categories)
     match_list = [x for x in sponsor_categories.keys()]
-    print(match_list)
+    # print(match_list)
 
 
+def match_text(text, match_list):
+    """Returns a list of phrases in text from a list of possible phrases
+    str, list of str -> list of str"""
+    matches = [match.group(0) for item in match_list for match in
+               [re.search(r'.*(%s).*' % text, item, flags=re.IGNORECASE)]
+               if match]
+    return matches
 
+
+def sponsor_type(matches, ranked_list):
+    """Returns the most likely sponsor based on ranking of phrases
+    str -> str"""
+    for sponsor in ranked_list:
+        if sponsor in matches:
+            return sponsor
 
 
 if __name__ == '__main__':
