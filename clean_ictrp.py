@@ -7,18 +7,23 @@ import csv
 def main():
     # terms that I want to classify into sponsor categories
     hospital_terms = ["hospital", "medical center", "health center", "clinic",
-                      "hopitaux", "hospitalier"]
-    academic_terms = ["university", "college", "universitas", "universidad"]
+                      "hopitaux", "hospitalier", "kaiser permanente"]
+    academic_terms = ["university", "college", "universitas", "universidad",
+                      "universitair", "school", "universiteit"]
     government_terms = ["department", "dept", "centers for disease control",
-                        "authority", "va office", "government funding body",
-                        "government body", "ministry", "government"]
+                        "authority", "va ", "government funding body",
+                        "government body", "ministry", "government",
+                        "board", "council"]
     ngo_terms = ["institute", "institut", "institulet", "center", "centre",
                  "foundation", "fundacion", "fondazione", "association",
                  "associates", "academy", "other collaborative groups",
-                 "charities"]
+                 "charities", "cooperative"]
     commercial_terms = ["AbbVie", "Sanofi", "Pfizer", "Eli Lilly", "Bayer",
-                        "Novartis", "GlaxoSmithKline", "Merck", "commercial"]
-    investigator_terms = ["Individual", "Professor", "Prof ", "Dr "]
+                        "Novartis", "GlaxoSmithKline", "Merck", "commercial",
+                        "pharma", "astrazeneca", "ltd", "corporation", " inc",
+                        "company", "gmbh"]
+    investigator_terms = ["Individual", "Professor", "Prof ", "Dr ", "Dr.",
+                          "PhD", "MD", "M.D.", "Prof."]
 
     # categories used for different types of sponsors
     categories = [
