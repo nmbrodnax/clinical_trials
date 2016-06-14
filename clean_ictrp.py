@@ -156,7 +156,30 @@ def main():
             if location not in countries:
                 countries.append(location)
 
-    print(countries)
+    with open("country_list.csv", 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        for country in countries:
+            writer.writerow([country])
+
+    # create a country counter
+    country_counter = {}
+    with open("country_list_clean.csv", 'r', newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            country_counter[row] = 0
+    # this doesn't work, need to fix
+
+
+    # count number of trials taking place in each country
+    for trial in all_trials:
+        for country_list in trial.get("Locations"):
+            for country in country_list:
+                if country in country_counter:
+                    country_counter[country] += 1
+                else:
+                    country_counter["N/A"] += 1
+
+    print(country_counter)
 
     # export data to csv
     with open("ictrp_trials.csv", 'w', newline='') as csvfile:
