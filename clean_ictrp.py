@@ -16,6 +16,7 @@ def main():
                  "associates", "academy"]
     commercial_terms = ["AbbVie", "Sanofi", "Pfizer", "Eli Lilly", "Bayer",
                         "Novartis", "GlaxoSmithKline", "Merck"]
+    investigator_terms = ["Individual", "Professor", "Prof ", "Dr "]
 
     # categories used for different types of sponsors
     categories = [
@@ -23,7 +24,8 @@ def main():
         (academic_terms, "University"),
         (government_terms, "Government"),
         (ngo_terms, "NGO"),
-        (commercial_terms, "Commercial")
+        (commercial_terms, "Commercial"),
+        (investigator_terms, "Investigator")
     ]
 
     # create a dictionary assigning each term (key) to a category (value)
@@ -51,7 +53,8 @@ def main():
         "University",
         "Government",
         "NGO",
-        "Commercial"
+        "Commercial",
+        "Investigator"
     ]
 
     # load in data from csv file
@@ -107,6 +110,7 @@ def main():
         "NGO": 0,
         "Commercial": 0,
         "Other": 0,
+        "Investigator": 0,
         "N/A": 0
     }
 
