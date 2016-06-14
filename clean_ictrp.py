@@ -118,20 +118,27 @@ def main():
 
     # create new variable Sponsor_type
     for trial in all_trials:
-        print(trial.get("Primary_sponsor"))
+        # print(trial.get("Primary_sponsor"))
         if trial.get("Primary_sponsor"):
             matches = match_text(trial.get("Primary_sponsor"), match_list)
-            print("Matches: " + str(matches))
+            # print("Matches: " + str(matches))
             all_categories = [sponsor_categories.get(match)
                               for match in matches]
             category = map_category(all_categories, sponsor_category_ranking)
         else:
             category = "N/A"
-        print("Category: " + category + "\n")
+        # print("Category: " + category + "\n")
         trial["Sponsor_Type"] = category
         sponsor_counter[category] += 1
-
     print(sponsor_counter)
+
+    # export data to csv
+    with open("ictrp_trials.csv", 'w', newline='') as csvfile:
+        fieldnames.append("Sponsor_Type")
+        writer = csv.DictWriter(csvfile, fieldnames, extrasaction='ignore')
+        writer.writeheader()
+        for trial in all_trials:
+            writer.writerow(trial)
 
 
 def match_text(text, match_list):
