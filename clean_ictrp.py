@@ -106,16 +106,22 @@ def main():
         "Government": 0,
         "NGO": 0,
         "Commercial": 0,
-        "Other": 0
+        "Other": 0,
+        "N/A": 0
     }
 
-    for trial in all_trials[:10]:
-        print(trial.get("Primary_sponsor"))
-        matches = match_text(trial.get("Primary_sponsor"), match_list)
-        print("Matches: " + str(matches))
-        all_categories = [sponsor_categories.get(match) for match in matches]
-        category = map_category(all_categories, sponsor_category_ranking)
-        print("Category: " + category + "\n")
+    # create new variable Sponsor_type
+    for trial in all_trials:
+        # print(trial.get("Primary_sponsor"))
+        if trial.get("Primary_sponsor"):
+            matches = match_text(trial.get("Primary_sponsor"), match_list)
+            # print("Matches: " + str(matches))
+            all_categories = [sponsor_categories.get(match)
+                              for match in matches]
+            category = map_category(all_categories, sponsor_category_ranking)
+        else:
+            category = "N/A"
+        # print("Category: " + category + "\n")
         trial["Sponsor_Type"] = category
         sponsor_counter[category] += 1
 
