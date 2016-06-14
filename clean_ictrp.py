@@ -136,10 +136,30 @@ def main():
         trial["Sponsor_Type"] = category
         sponsor_counter[category] += 1
     print(sponsor_counter)
+    fieldnames.append("Sponsor_Type")
+
+    # create new variable Locations
+    for trial in all_trials:
+        if trial.get("Countries"):
+            temp = trial.get("Countries")
+            locations = temp.split(";")
+        else:
+            locations = ["N/A"]
+        trial["Locations"] = locations
+    fieldnames.append("Locations")
+
+    # create a list of countries
+    countries = []
+    for trial in all_trials:
+        for location in trial.get("Locations"):
+            location = location.strip(",.")
+            if location not in countries:
+                countries.append(location)
+
+    print(countries)
 
     # export data to csv
     with open("ictrp_trials.csv", 'w', newline='') as csvfile:
-        fieldnames.append("Sponsor_Type")
         writer = csv.DictWriter(csvfile, fieldnames, extrasaction='ignore')
         writer.writeheader()
         for trial in all_trials:
