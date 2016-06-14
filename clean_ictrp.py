@@ -9,13 +9,15 @@ def main():
     hospital_terms = ["hospital", "medical center", "health center", "clinic",
                       "hopitaux", "hospitalier"]
     academic_terms = ["university", "college", "universitas", "universidad"]
-    government_terms = ["department", "centers for disease control",
-                        "authority", "va office", "government funding body"]
+    government_terms = ["department", "dept", "centers for disease control",
+                        "authority", "va office", "government funding body",
+                        "government body", "ministry", "government"]
     ngo_terms = ["institute", "institut", "institulet", "center", "centre",
                  "foundation", "fundacion", "fondazione", "association",
-                 "associates", "academy"]
+                 "associates", "academy", "other collaborative groups",
+                 "charities"]
     commercial_terms = ["AbbVie", "Sanofi", "Pfizer", "Eli Lilly", "Bayer",
-                        "Novartis", "GlaxoSmithKline", "Merck"]
+                        "Novartis", "GlaxoSmithKline", "Merck", "commercial"]
     investigator_terms = ["Individual", "Professor", "Prof ", "Dr "]
 
     # categories used for different types of sponsors
@@ -116,16 +118,16 @@ def main():
 
     # create new variable Sponsor_type
     for trial in all_trials:
-        # print(trial.get("Primary_sponsor"))
+        print(trial.get("Primary_sponsor"))
         if trial.get("Primary_sponsor"):
             matches = match_text(trial.get("Primary_sponsor"), match_list)
-            # print("Matches: " + str(matches))
+            print("Matches: " + str(matches))
             all_categories = [sponsor_categories.get(match)
                               for match in matches]
             category = map_category(all_categories, sponsor_category_ranking)
         else:
             category = "N/A"
-        # print("Category: " + category + "\n")
+        print("Category: " + category + "\n")
         trial["Sponsor_Type"] = category
         sponsor_counter[category] += 1
 
