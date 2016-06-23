@@ -166,9 +166,7 @@ def main():
     with open("country_list_clean.csv", 'r', newline='') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
-            country_counter[row] = 0
-    # this doesn't work, need to fix
-
+            country_counter[row[0]] = 0
 
     # count number of trials taking place in each country
     for trial in all_trials:
@@ -176,8 +174,8 @@ def main():
             for country in country_list:
                 if country in country_counter:
                     country_counter[country] += 1
-                else:
-                    country_counter["N/A"] += 1
+                # else:
+                    # country_counter["N/A"] += 1
 
     print(country_counter)
 
