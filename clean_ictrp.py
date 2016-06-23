@@ -145,6 +145,7 @@ def main():
             locations = temp.split(";")
         else:
             locations = ["N/A"]
+        # print("Locations: " + str(locations))
         trial["Locations"] = locations
     fieldnames.append("Locations")
 
@@ -169,13 +170,24 @@ def main():
             country_counter[row[0]] = 0
 
     # count number of trials taking place in each country
-    for trial in all_trials:
+    for trial in all_trials[:2]:
+        # print(str(trial), "\n")
         for country_list in trial.get("Locations"):
-            for country in country_list:
-                if country in country_counter:
-                    country_counter[country] += 1
-                # else:
-                    # country_counter["N/A"] += 1
+            if isinstance(country_list, list):
+                print("Country List: " + str(country_list))
+                for country in country_list:
+                    # print("Country: " + country)
+                    if country in country_counter:
+                        print("Country added: " + str(country))
+                        country_counter[country] += 1
+                    else:
+                        print("Country not in list")
+            elif isinstance(country_list, str):
+                if country_list in country_counter:
+                    print("Country added: " + str(country_list))
+                    country_counter[country_list] += 1
+                else:
+                    print("Country not in list")
 
     print(country_counter)
 
