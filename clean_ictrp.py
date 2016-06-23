@@ -170,24 +170,14 @@ def main():
             country_counter[row[0]] = 0
 
     # count number of trials taking place in each country
-    for trial in all_trials[:2]:
+    for trial in all_trials:
         # print(str(trial), "\n")
-        for country_list in trial.get("Locations"):
-            if isinstance(country_list, list):
-                print("Country List: " + str(country_list))
-                for country in country_list:
-                    # print("Country: " + country)
-                    if country in country_counter:
-                        print("Country added: " + str(country))
-                        country_counter[country] += 1
-                    else:
-                        print("Country not in list")
-            elif isinstance(country_list, str):
-                if country_list in country_counter:
-                    print("Country added: " + str(country_list))
-                    country_counter[country_list] += 1
-                else:
-                    print("Country not in list")
+        for location in trial.get("Locations"):
+            if location in country_counter:
+                print("Country added: " + str(location))
+                country_counter[location] += 1
+            else:
+                print("Country not in list")
 
     print(country_counter)
 
