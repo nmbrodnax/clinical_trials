@@ -284,7 +284,7 @@ def main():
         "Immunology",
         "Cardiovascular",
         "Bone Muscle Joint",
-        "Pediatrics"
+        "Pediatrics",
         "Substance Abuse",
         "Urology and Gastrics",
         "Bariatric",
@@ -313,8 +313,15 @@ def main():
         # print("Category: " + category + "\n")
         trial["Therapeutic_Area"] = category
         area_counter[category] += 1
-    print(area_counter)
+    # print(area_counter)
     fieldnames.append("Therapeutic_Area")
+
+    # export therapeutic area counts to csv
+    with open("trials_by_area.csv", 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        i = 0
+        while i < len(area_counter):
+            writer.writerow(area_counter.popitem())
 
     # export data to csv
     with open("ictrp_trials.csv", 'w', newline='') as csvfile:
