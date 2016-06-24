@@ -208,48 +208,60 @@ def main():
     # therapeutic areas to categorize
     bone_muscle_joint = ["bone", "muscle", "joint", "arthritis", "fracture",
                          "back pain", "sprain", "musculoskeletal", "arthrosis",
-                         "osteoarthritis"]
-    cardiovascular = ["angina", "myocardial infarction", "heart", "coronary",
+                         "osteoarthritis", "soft tissue", "foot", "leg"]
+    cardiovascular = ["angina", "myocardial", "heart", "coronary",
                       "stroke", "arrythmia", "atrial fibrillation", "blood",
                       "cardiac", "cardiopulmonary", "cardiometabolic",
-                      "artery", "hypertension"]
+                      "artery", "hypertension", "cardiovascular"]
     diabetes = ["diabetes", "diabetic", "glucose", "insulin"]
-    endocrine = ["endocrine"]
     respiratory = ["asthma", "respiratory", "asthmatic", "bronchitis",
-                   "pulmonary", "pneumonia", "COPD"]
+                   "pulmonary", "pneumonia", "COPD", "influenza"]
     neuroscience = ["depressive", "depression", "delirium", "hyperkinetic",
                     "panic", "alzheimer", "cerebral", "emotion", "adhd",
                     "dementia", "anxiety", "anorexia", "stress", "attention",
                     "hyperactivity", "autism", "bipolar", "personality",
                     "brain", "cognitive", "mood", "mental", "psychosis",
-                    "psychological", "ptsd", "schizophrenia"]
+                    "psychological", "ptsd", "schizophrenia", "suicide",
+                    "psychosocial", "obsessive compulsive"]
     oncology = ["leukemia", "cancer", "angiosarcoma", "tumor", "tumour",
-                "carcinoma", "melanoma"]
+                "carcinoma", "melanoma", "benign", "oncologic"]
     substance = ["alcohol", "dependence", "addiction", "consumption",
                  "cannabis", "drinking", "abuse", "dependency", "smoking",
-                 "cigarette", "cocaine", "nicotine", "tobacco"]
-    pediatric = ["children", "prenatal", "breastfeed", "pediatric", "child",
-                 "childhood", "pregnancy", "fertility", "gestational",
-                 "childbirth", "abortion", "miscarriage"]
-    urology = ["urology", "kidney", "dialysis", "renal", "urinary"]
+                 "cigarette", "cocaine", "nicotine", "tobacco", "smoker"]
+    pediatric = ["children", "pediatric", "child", "childhood", "pregnancy",
+                 "toddler", "infant"]
+    urology_gastro = ["urology", "kidney", "dialysis", "renal", "urinary",
+                      "ibs", "irritable bowel", "constipation", "diarrhea",
+                      "gastric", "colorectal", "colitis"]
     bariatric = ["obese", "obesity", "weight", "diet", "overweight",
-                 "sedentary"]
+                 "sedentary", "physical activity", "physical inactivity",
+                 "malnutrition", "nutrition"]
     immunology = ["cystic fibrosis", "fibromyalgia", "HIV", "metabolic",
                   "multiple sclerosis", "parkinson"]
+    vision = ["vision", "macular", "visual", "eye", "ocular", "glaucoma"]
+    elderly = ["older adults", "elderly", "falls", "older"]
+    obgyn = ["breastfeed", "fertility", "gestational", "childbirth",
+             "abortion", "miscarriage", "prenatal", "post partum", "caesarean",
+             "postpartum", "contraception", "maternity", "vaginal",
+             "obstetrical", "sexually transmitted", "vaginosis"]
+    sleep = ["insomnia", "sleep", "sleepiness", "drowsiness"]
 
     categories = [
         (bone_muscle_joint, "Bone Muscle Joint"),
         (cardiovascular, "Cardiovascular"),
         (diabetes, "Diabetes"),
-        (endocrine, "Endocrine"),
         (respiratory, "Respiratory"),
         (neuroscience, "Neuroscience"),
         (oncology, "Oncology"),
         (substance, "Substance Abuse"),
-        (pediatric, "Obstetrics and Pediatrics"),
-        (urology, "Urology"),
+        (pediatric, "Pediatrics"),
+        (urology_gastro, "Urology and Gastrics"),
         (bariatric, "Bariatric"),
-        (immunology, "Immunology")
+        (immunology, "Immunology"),
+        (vision, "Vision"),
+        (elderly, "Elderly Population"),
+        (sleep, "Sleep"),
+        (obgyn, "Obstetrics and Gynecology")
     ]
 
     # create a dictionary assigning each term (key) to a category (value)
@@ -264,21 +276,6 @@ def main():
     # print(area_categories)
     # print(area_counter)
 
-    # area_counter = {
-    #     "Bone Muscle Joint": 0,
-    #     "Cardiovascular": 0,
-    #     "Diabetes": 0,
-    #     "Endocrine": 0,
-    #     "Respiratory": 0,
-    #     "Neuroscience": 0,
-    #     "Oncology": 0,
-    #     "Substance Abuse": 0,
-    #     "Obstetrics and Pediatrics": 0,
-    #     "Urology": 0,
-    #     "Bariatric": 0,
-    #     "Immunology": 0
-    #     }
-
     area_category_ranking = [
         "Diabetes",
         "Oncology",
@@ -287,14 +284,17 @@ def main():
         "Immunology",
         "Cardiovascular",
         "Bone Muscle Joint",
-        "Endocrine",
+        "Pediatrics"
         "Substance Abuse",
-        "Obstetrics and Pediatrics",
-        "Urology",
+        "Urology and Gastrics",
         "Bariatric",
+        "Obstetrics and Gynecology",
+        "Sleep",
+        "Vision",
+        "Elderly Population",
         "Other",
         "N/A"
-        ]
+    ]
 
     # create a list of just the medical terms
     match_list = [x for x in area_categories.keys()]
