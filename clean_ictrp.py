@@ -170,9 +170,25 @@ def main():
             country_counter[row[0]] = 0
 
     # count number of trials taking place in each country
+
+    # dictionary for recoding location data
+    recoded_countries = {
+        "Korea North": "Korea, Republic of",
+        "Korea South": "Korea, Republic of",
+        "Korea, South": "Korea, Republic of",
+        "NA": "N/A",
+        "Not Applicable": "N/A",
+        "United Kindgdom": "United Kingdom",
+        "United States of America": "United States",
+        "Viet Nam": "Vietnam",
+        "Taiwan, Province of China": "Taiwan"
+    }
+
     for trial in all_trials:
         # print(str(trial), "\n")
         for location in trial.get("Locations"):
+            if location in recoded_countries:
+                location = recoded_countries.get(location)
             if location in country_counter:
                 # print("Country added: " + str(location))
                 country_counter[location] += 1
