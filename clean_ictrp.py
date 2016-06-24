@@ -204,6 +204,54 @@ def main():
         while i < len(country_counter):
             writer.writerow(country_counter.popitem())
 
+    # therapeutic areas to categorize
+    bone_muscle_joint = ["bone", "muscle", "joint", "arthritis", "fracture",
+                         "back pain", "sprain", "musculoskeletal", "arthrosis",
+                         "osteoarthritis"]
+    cardiovascular = ["angina", "myocardial infarction", "heart", "coronary",
+                      "stroke", "arrythmia", "atrial fibrillation", "blood",
+                      "cardiac", "cardiopulmonary", "cardiometabolic",
+                      "artery", "hypertension"]
+    diabetes = ["diabetes", "diabetic", "glucose", "insulin"]
+    endocrine = ["endocrine"]
+    respiratory = ["asthma", "respiratory", "asthmatic", "bronchitis",
+                   "pulmonary", "pneumonia", "COPD"]
+    neuroscience = ["depressive", "depression", "delirium", "hyperkinetic",
+                    "panic", "alzheimer", "cerebral", "emotion", "adhd",
+                    "dementia", "anxiety", "anorexia", "stress", "attention",
+                    "hyperactivity", "autism", "bipolar", "personality",
+                    "brain", "cognitive", "mood", "mental", "psychosis",
+                    "psychological", "ptsd", "schizophrenia"]
+    oncology = ["leukemia", "cancer", "angiosarcoma", "tumor", "tumour",
+                "carcinoma", "melanoma"]
+    substance = ["alcohol", "dependence", "addiction", "consumption",
+                 "cannabis", "drinking", "abuse", "dependency", "smoking",
+                 "cigarette", "cocaine", "nicotine", "tobacco"]
+    pediatric = ["children", "prenatal", "breastfeed", "pediatric", "child",
+                 "childhood", "pregnancy", "fertility", "gestational",
+                 "childbirth", "abortion", "miscarriage"]
+    urology = ["urology", "kidney", "dialysis", "renal", "urinary"]
+    bariatric = ["obese", "obesity", "weight", "diet", "overweight",
+                 "sedentary"]
+    immunology = ["cystic fibrosis", "fibromyalgia", "HIV", "metabolic",
+                  "multiple sclerosis", "parkinson"]
+
+
+    area_categories = [
+        (bone_muscle_joint, "Bone Muscle Joint"),
+        (cardiovascular, "Cardiovascular"),
+        (diabetes, "Diabetes"),
+        (endocrine, "Endocrine"),
+        (respiratory, "Respiratory"),
+        (neuroscience, "Neuroscience"),
+        (oncology, "Oncology"),
+        (substance, "Substance Abuse"),
+        (pediatric, "Obstetrics and Pediatrics"),
+        (urology, "Urology"),
+        (bariatric, "Bariatric"),
+        (immunology, "Immunology")
+    ]
+
     # export data to csv
     with open("ictrp_trials.csv", 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames, extrasaction='ignore')
