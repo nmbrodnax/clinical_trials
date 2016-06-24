@@ -181,6 +181,9 @@ def main():
 
     print(country_counter)
 
+    # export country counts to csv
+    # to do
+
     # export data to csv
     with open("ictrp_trials.csv", 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames, extrasaction='ignore')
