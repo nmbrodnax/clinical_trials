@@ -135,7 +135,7 @@ def main():
         # print("Category: " + category + "\n")
         trial["Sponsor_Type"] = category
         sponsor_counter[category] += 1
-    print(sponsor_counter)
+    # print(sponsor_counter)
     fieldnames.append("Sponsor_Type")
 
     # create new variable Locations
@@ -254,27 +254,27 @@ def main():
 
     # create a dictionary assigning each term (key) to a category (value)
     area_categories = {}
+    area_counter = {}
     for pair in categories:
-        for term in pair[0]:
-            area_categories[term] = pair[1]
+        area_categories[pair[0]] = pair[1]
+        area_counter[pair[1]] = 0
+    print(area_categories)
+    print(area_counter)
 
-    # create a list of just the medical terms
-    match_list = [x for x in area_categories.keys()]
-
-    area_counter = {
-        "Bone Muscle Joint": 0,
-        "Cardiovascular": 0,
-        "Diabetes": 0,
-        "Endocrine": 0,
-        "Respiratory": 0,
-        "Neuroscience": 0,
-        "Oncology": 0,
-        "Substance Abuse": 0,
-        "Obstetrics and Pediatrics": 0,
-        "Urology": 0,
-        "Bariatric": 0,
-        "Immunology": 0
-    }
+    # area_counter = {
+    #     "Bone Muscle Joint": 0,
+    #     "Cardiovascular": 0,
+    #     "Diabetes": 0,
+    #     "Endocrine": 0,
+    #     "Respiratory": 0,
+    #     "Neuroscience": 0,
+    #     "Oncology": 0,
+    #     "Substance Abuse": 0,
+    #     "Obstetrics and Pediatrics": 0,
+    #     "Urology": 0,
+    #     "Bariatric": 0,
+    #     "Immunology": 0
+    #     }
 
     area_category_ranking = [
         "Diabetes",
@@ -289,7 +289,27 @@ def main():
         "Obstetrics and Pediatrics",
         "Urology",
         "Bariatric"
-    ]
+        ]
+
+    # create a list of just the medical terms
+    match_list = [x for x in area_categories.keys()]
+
+    # create new variable Therapeutic_Area
+    for trial in all_trials:
+        # print(trial.get("Condition"))
+        if trial.get("Condition"):
+            matches = match_text(trial.get("Condition"), match_list)
+            # print("Matches: " + str(matches))
+            all_categories = [area_categories.get(match)
+                              for match in matches]
+            category = map_category(all_categories, area_category_ranking)
+        else:
+            category = "N/A"
+        # print("Category: " + category + "\n")
+        trial["Therapeutic_Area"] = category
+        area_counter[category] += 1
+    print(area_counter)
+    fieldnames.append("Sponsor_Type")
 
     # export data to csv
     with open("ictrp_trials.csv", 'w', newline='') as csvfile:
