@@ -174,15 +174,19 @@ def main():
         # print(str(trial), "\n")
         for location in trial.get("Locations"):
             if location in country_counter:
-                print("Country added: " + str(location))
+                # print("Country added: " + str(location))
                 country_counter[location] += 1
-            else:
-                print("Country not in list")
+            # else:
+                # print("Country not in list")
 
-    print(country_counter)
+    # print(country_counter)
 
     # export country counts to csv
-    # to do
+    with open("trials_per_country.csv", 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        i = 0
+        while i < len(country_counter):
+            writer.writerow(country_counter.popitem())
 
     # export data to csv
     with open("ictrp_trials.csv", 'w', newline='') as csvfile:
