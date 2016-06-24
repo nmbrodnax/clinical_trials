@@ -236,8 +236,7 @@ def main():
     immunology = ["cystic fibrosis", "fibromyalgia", "HIV", "metabolic",
                   "multiple sclerosis", "parkinson"]
 
-
-    area_categories = [
+    categories = [
         (bone_muscle_joint, "Bone Muscle Joint"),
         (cardiovascular, "Cardiovascular"),
         (diabetes, "Diabetes"),
@@ -250,6 +249,45 @@ def main():
         (urology, "Urology"),
         (bariatric, "Bariatric"),
         (immunology, "Immunology")
+    ]
+
+    # create a dictionary assigning each term (key) to a category (value)
+    area_categories = {}
+    for pair in categories:
+        for term in pair[0]:
+            area_categories[term] = pair[1]
+
+    # create a list of just the medical terms
+    match_list = [x for x in area_categories.keys()]
+
+    area_counter = {
+        "Bone Muscle Joint": 0,
+        "Cardiovascular": 0,
+        "Diabetes": 0,
+        "Endocrine": 0,
+        "Respiratory": 0,
+        "Neuroscience": 0,
+        "Oncology": 0,
+        "Substance Abuse": 0,
+        "Obstetrics and Pediatrics": 0,
+        "Urology": 0,
+        "Bariatric": 0,
+        "Immunology": 0
+    }
+
+    area_category_ranking = [
+        "Diabetes",
+        "Oncology",
+        "Respiratory",
+        "Neuroscience",
+        "Immunology",
+        "Cardiovascular",
+        "Bone Muscle Joint",
+        "Endocrine",
+        "Substance Abuse",
+        "Obstetrics and Pediatrics",
+        "Urology",
+        "Bariatric"
     ]
 
     # export data to csv
