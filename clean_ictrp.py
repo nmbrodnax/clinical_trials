@@ -256,10 +256,11 @@ def main():
     area_categories = {}
     area_counter = {}
     for pair in categories:
-        area_categories[pair[0]] = pair[1]
+        for term in pair[0]:
+            area_categories[term] = pair[1]
         area_counter[pair[1]] = 0
-    print(area_categories)
-    print(area_counter)
+    # print(area_categories)
+    # print(area_counter)
 
     # area_counter = {
     #     "Bone Muscle Joint": 0,
