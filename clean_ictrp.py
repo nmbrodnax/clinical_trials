@@ -259,6 +259,8 @@ def main():
         for term in pair[0]:
             area_categories[term] = pair[1]
         area_counter[pair[1]] = 0
+    area_counter["Other"] = 0
+    area_counter["N/A"] = 0
     # print(area_categories)
     # print(area_counter)
 
@@ -289,7 +291,9 @@ def main():
         "Substance Abuse",
         "Obstetrics and Pediatrics",
         "Urology",
-        "Bariatric"
+        "Bariatric",
+        "Other",
+        "N/A"
         ]
 
     # create a list of just the medical terms
@@ -310,7 +314,7 @@ def main():
         trial["Therapeutic_Area"] = category
         area_counter[category] += 1
     print(area_counter)
-    fieldnames.append("Sponsor_Type")
+    fieldnames.append("Therapeutic_Area")
 
     # export data to csv
     with open("ictrp_trials.csv", 'w', newline='') as csvfile:
