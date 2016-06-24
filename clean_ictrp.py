@@ -181,7 +181,8 @@ def main():
         "United Kindgdom": "United Kingdom",
         "United States of America": "United States",
         "Viet Nam": "Vietnam",
-        "Taiwan, Province of China": "Taiwan"
+        "Taiwan, Province of China": "Taiwan",
+        "The Netherlands": "Netherlands"
     }
 
     for trial in all_trials:
