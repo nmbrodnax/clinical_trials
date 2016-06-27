@@ -349,6 +349,16 @@ def map_category(matches, ranked_list, default_category="Other"):
     else:
         return default_category
 
+def study_type(text):
+    """Returns the most likely study category
+    str -> str"""
+    if "observation" in text:
+        return "Observational"
+    elif "intervention" in text:
+        return "Interventional"
+    else:
+        return "Other"
+
 
 if __name__ == '__main__':
     main()
