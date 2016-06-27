@@ -102,7 +102,7 @@ def main():
         "Contact_Affiliation"
     ]
 
-    with open("telemed_trials.csv", 'r') as csvfile:
+    with open("telemed_trials.csv", 'r', encoding='cp1252') as csvfile:
         reader = csv.DictReader(csvfile, fieldnames)
         next(reader, None)
         all_trials = []
