@@ -323,6 +323,16 @@ def main():
         while i < len(area_counter):
             writer.writerow(area_counter.popitem())
 
+    # create variable for study type
+    for trial in all_trials:
+        temp = trial.get("Study_type")
+        if temp:
+            category = study_type(temp)
+        else:
+            category = "N/A"
+        trial["Type"] = category
+    fieldnames.append("Type")
+
     # export data to csv
     with open("ictrp_trials.csv", 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames, extrasaction='ignore')
@@ -349,12 +359,13 @@ def map_category(matches, ranked_list, default_category="Other"):
     else:
         return default_category
 
+
 def study_type(text):
     """Returns the most likely study category
     str -> str"""
-    if "observation" in text:
+    if "observation" in text.lower():
         return "Observational"
-    elif "intervention" in text:
+    elif "intervention" in text.lower():
         return "Interventional"
     else:
         return "Other"
