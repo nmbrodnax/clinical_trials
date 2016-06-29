@@ -228,8 +228,8 @@ def main():
     substance = ["alcohol", "dependence", "addiction", "consumption",
                  "cannabis", "drinking", "abuse", "dependency", "smoking",
                  "cigarette", "cocaine", "nicotine", "tobacco", "smoker"]
-    pediatric = ["children", "pediatric", "child", "childhood", "pregnancy",
-                 "toddler", "infant"]
+    pediatric = ["children", "pediatric", "child", "childhood", "toddler",
+                 "infant"]
     urology_gastro = ["urology", "kidney", "dialysis", "renal", "urinary",
                       "ibs", "irritable bowel", "constipation", "diarrhea",
                       "gastric", "colorectal", "colitis"]
@@ -243,7 +243,7 @@ def main():
     obgyn = ["breastfeed", "fertility", "gestational", "childbirth",
              "abortion", "miscarriage", "prenatal", "post partum", "caesarean",
              "postpartum", "contraception", "maternity", "vaginal",
-             "obstetrical", "sexually transmitted", "vaginosis"]
+             "obstetrical", "sexually transmitted", "vaginosis", "pregnancy"]
     sleep = ["insomnia", "sleep", "sleepiness", "drowsiness"]
 
     categories = [
