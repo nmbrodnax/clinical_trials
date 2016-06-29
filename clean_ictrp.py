@@ -333,6 +333,27 @@ def main():
         trial["Type"] = category
     fieldnames.append("Type")
 
+    # create variable for phase category
+    phases = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, 'I': 1, 'II': 2,
+              'III': 3, 'IV': 4}
+    match_pattern = re.compile(r'[0|1|2|3|4|IV|III|II|I]+')
+    for trial in all_trials:
+        temp = trial.get("Phase")
+        if temp:
+            matches = match_pattern.findall(temp)
+            if matches:
+                phase = [phases.get(m) for m in matches]
+                if None in phase:
+                    category = "No Match"
+                else:
+                    category = max(phase)
+            else:
+                category = "No Match"
+        else:
+            category = "No Phase"
+        trial["Study_Phase"] = category
+    fieldnames.append("Study_Phase")
+
     # export data to csv
     with open("ictrp_trials.csv", 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames, extrasaction='ignore')
