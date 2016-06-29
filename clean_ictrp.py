@@ -284,7 +284,6 @@ def main():
         "Immunology",
         "Cardiovascular",
         "Bone Muscle Joint",
-        "Pediatrics",
         "Substance Abuse",
         "Urology and Gastrics",
         "Bariatric",
@@ -292,6 +291,7 @@ def main():
         "Sleep",
         "Vision",
         "Elderly Population",
+        "Pediatrics",
         "Other",
         "N/A"
     ]
