@@ -1,7 +1,10 @@
 library(ggplot2)
 library(ggthemes)
 
+# load data from csv file
 data <- read.csv("ictrp_trials.csv", header = TRUE)
+
+# create data frame with subset of columns
 trials <- data.frame(
   id = data$TrialID,
   title = data$Public_title,
@@ -11,6 +14,7 @@ trials <- data.frame(
   phase = data$Study_Phase
 )
 
+# recode variables to proper type and remove NA
 trials$id <- as.character(trials$id)
 trials$title <- as.character(trials$title)
 trials$sponsor[trials$sponsor == 'N/A'] <- NA
@@ -28,3 +32,6 @@ trials$type <- factor(trials$type, levels = c("Interventional", "Observational",
 trials$phase[trials$phase == 'No Match'] <- NA
 trials$phase[trials$phase == 'No Phase'] <- NA
 trials$phase <- factor(trials$phase, levels = c("0", "1", "2", "3", "4"))
+
+# save data file to hard disk
+write.table(trials, "ictrp_trials.dat")
