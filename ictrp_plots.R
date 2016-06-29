@@ -35,3 +35,13 @@ trials$phase <- factor(trials$phase, levels = c("0", "1", "2", "3", "4"))
 
 # save data file to hard disk
 write.table(trials, "ictrp_trials.dat")
+
+# plots
+
+# trials by sponsor type (fill by study type)
+plot1 <- (ggplot(trials[which(!is.na(trials$sponsor)),], aes(sponsor, fill=type))
+          + ylab('Number of Trials')
+          + xlab('Sponsor Type')
+          + ggtitle('Trials by Sponsor Type')
+          + geom_bar())
+ggsave(file="trials_by_sponsor.pdf")
