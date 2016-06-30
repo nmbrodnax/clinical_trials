@@ -42,6 +42,30 @@ write.table(trials, "ictrp_trials.dat")
 plot1 <- (ggplot(trials[which(!is.na(trials$sponsor)),], aes(sponsor, fill=type))
           + ylab('Number of Trials')
           + xlab('Sponsor Type')
-          + ggtitle('Trials by Sponsor Type')
+          + ggtitle('Telemedicine Trials by Sponsor Type')
           + geom_bar())
 ggsave(file="trials_by_sponsor.pdf")
+
+plot2 <- (ggplot(trials[which(!is.na(trials$sponsor) & trials$area == 'Diabetes'),],
+                 aes(sponsor, fill=type))
+          + ylab('Number of Trials')
+          + xlab('Sponsor Type')
+          + ggtitle('Telemedicine Trials by Sponsor Type: Diabetes')
+          + geom_bar()
+          + scale_fill_manual(values = c("#663399", "#9966CC", "#CC99FF", "#999999")))
+ggsave(file="diabetes_by_sponsor.pdf")
+
+temp_data <- trials[trials$sponsor == 'Commercial',]
+sorted_levels <- names(sort(table(temp_data$area)))
+temp_data$area <- factor(temp_data$area, levels = sorted_levels)
+plot3 <- (ggplot(temp_data[which(!is.na(temp_data$area)),],
+                 aes(area, fill=type))
+          + ylab('Number of Trials')
+          + xlab('Sponsor Type')
+          + ggtitle('Telemedicine Trials by Area: Commercial')
+          + geom_bar()
+          + coord_flip()
+          + scale_fill_manual(values = c("#9966CC", "#CC99FF", "#999999")))
+ggsave(file="commercial_by_area.pdf")
+
+color_swatches <- c("#525564", "#74828F", "#96C0CE", "#BEB9B5", "#C25B56", "#FEF6EB")
