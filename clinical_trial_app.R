@@ -45,7 +45,8 @@ ui <- fluidPage(
       sidebarPanel(
         selectInput("sponsor", "Sponsor Type:", choices=levels(trials$sponsor)),
         hr(),
-        helpText("Data from AT&T (1961) The World's Telephones.")
+        helpText("Data from the World Health Organization (2016) International\
+Clinical Trial Registry Platform.")
       ),
       # Create a spot for the barplot
       mainPanel(
