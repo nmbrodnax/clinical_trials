@@ -34,7 +34,7 @@ trials$phase[trials$phase == 'No Phase'] <- NA
 trials$phase <- factor(trials$phase, levels = c("0", "1", "2", "3", "4"))
 
 # save data file to hard disk
-write.table(trials, "ictrp_trials.dat")
+write.table(trials, "ictrp_trials.dat", row.names = FALSE)
 
 # plots
 
