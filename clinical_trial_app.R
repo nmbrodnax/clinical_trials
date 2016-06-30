@@ -61,7 +61,7 @@ server <- function(input, output) {
     # Render a barplot
     (ggplot(trials[trials$sponsor == input$sponsor,], aes(area, fill=type))
      + ylab('Number of Trials')
-     + xlab('Sponsor Type')
+     + xlab('Therapeutic Area')
      + ggtitle('Telemedicine Trials by Area')
      + geom_bar()
      + coord_flip()
