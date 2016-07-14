@@ -1,6 +1,6 @@
 library(shiny)
 library(ggplot2)
-library(ggthemes)
+# library(ggthemes)
 library(datasets)
 
 # load data from csv file
