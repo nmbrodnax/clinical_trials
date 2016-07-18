@@ -173,15 +173,23 @@ def main():
 
     # dictionary for recoding location data
     recoded_countries = {
-        "Korea North": "Korea, Republic of",
-        "Korea South": "Korea, Republic of",
-        "Korea, South": "Korea, Republic of",
+        "Democratic Republic of the Congo": "Congo",
+        "Hong Kong": "China",
+        "Iran, Islamic Republic Of": "Iran",
+        "Korea North": "North Korea",
+        "Korea South": "South Korea",
+        "Korea, South": "South Korea",
+        "Korea, Republic of": "South Korea",
+        "Malasya": "Malaysia",
         "NA": "N/A",
         "Not Applicable": "N/A",
-        "United Kindgdom": "United Kingdom",
-        "United States of America": "United States",
+        "Russian Federation": "Russia",
+        "United Kindgdom": "UK",
+        "United Kingdom": "UK",
+        "United States": "USA",
+        "United States of America": "USA",
         "Viet Nam": "Vietnam",
-        "Taiwan, Province of China": "Taiwan",
+        "Taiwan, Province Of China": "Taiwan",
         "The Netherlands": "Netherlands"
     }
 
