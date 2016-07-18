@@ -32,9 +32,12 @@ ggplot(trial_data, aes(map_id = country)) +
 ggsave("global_trial_map_continuous.pdf")
 
 # create plot with map of trial data in discrete buckets
-trial_group <- cut(trial_data$trials, seq(0, 600, by = 25))
+lilly <- c("#EAE5E3", "#D3CCC8", "#A59D95", "#FFE789", "#FFDC45", "#FF9352",
+           "#F36A50", "#D52B1E")
+trial_group <- cut(trial_data$trials, seq(1,600, by = 25))
 ggplot(trial_data, aes(map_id = country)) +
   geom_map(aes(fill = trial_group), map = worldmap) +
   expand_limits(x = worldmap$long, y = worldmap$lat) +
-  theme(legend.title = element_blank())
+  theme(legend.title = element_blank(), legend.position = "bottom") +
+  scale_fill_discrete(h = c(0,280), h.start = 250, direction = 1)
 ggsave("global_trial_map_discrete.pdf")
