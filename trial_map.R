@@ -25,6 +25,3 @@ data$country <- as.character(data$country) # convert factor to character
 data$trials <- as.numeric(levels(data$trials)[data$trials]) # convert factor to numeric
 
 # create plot with map of trial data by country
-mp <- NULL
-mp <- ggplot() + geom_map(data = data, aes(map_id = country, fill= trials), map = worldmap)
-
