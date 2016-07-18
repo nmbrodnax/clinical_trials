@@ -35,5 +35,6 @@ ggsave("global_trial_map_continuous.pdf")
 trial_group <- cut(trial_data$trials, seq(0, 600, by = 25))
 ggplot(trial_data, aes(map_id = country)) +
   geom_map(aes(fill = trial_group), map = worldmap) +
-  expand_limits(x = worldmap$long, y = worldmap$lat)
+  expand_limits(x = worldmap$long, y = worldmap$lat) +
+  theme(legend.title = element_blank())
 ggsave("global_trial_map_discrete.pdf")
