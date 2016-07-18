@@ -1,4 +1,5 @@
 library(ggplot2)
+library(maps)
 
 # load trial data by country (csv file created by clean_ictrp.py)
 country_data <- read.csv("trials_per_country.csv", col.names = c("country", "trials"))
@@ -19,9 +20,13 @@ for (country in country_list){
 }
 
 # create data frame from factor matrix
-data <- data.frame(T)
-colnames(data) <- c("country", "trials")
-data$country <- as.character(data$country) # convert factor to character
-data$trials <- as.numeric(levels(data$trials)[data$trials]) # convert factor to numeric
+trial_data <- data.frame(T)
+colnames(trial_data) <- c("country", "trials")
+trial_data$country <- as.character(trial_data$country)
+trial_data$trials <- as.numeric(levels(trial_data$trials)[trial_data$trials])
 
 # create plot with map of trial data by country
+ggplot(trial_data, aes(map_id = country)) +
+  geom_map(aes(fill = trials), map = worldmap) +
+  expand_limits(x = worldmap$long, y = worldmap$lat)
+ggsave("global_trial_map.pdf")
