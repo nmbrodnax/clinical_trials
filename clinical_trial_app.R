@@ -66,7 +66,7 @@ server <- function(input, output) {
      + ggtitle('Telemedicine Trials by Area')
      + geom_bar()
      + coord_flip()
-     + scale_fill_manual(values = c("#C25B56", "#525564", "#74828F", "#96C0CE")))
+     + scale_fill_manual(values = c("#F36A50", "#FF9352", "#FFDC45", "#BDB4AE")))
   })
 }
 
