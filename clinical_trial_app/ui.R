@@ -24,13 +24,13 @@ shinyUI(
         "By Therapeutic Area",
         selectInput("sponsor", "Choose Sponsor:", choices=levels(trials$sponsor),
                     selected = "Commercial"),
-        plotOutput("plot1", width = "900px")
+        plotOutput("plot1", width = "900px", height = "700px")
       ),
       tabPanel(
         "By Phase",
         selectInput("area", "Choose Therapeutic Area:", choices=levels(trials$area),
                     selected = "Diabetes"),
-        plotOutput("plot2", width = "900px")
+        plotOutput("plot2", width = "900px", height = "600px")
       )
     )
     )
