@@ -2,58 +2,41 @@ library(shiny)
 library(ggplot2)
 library(maps)
 
-# Rely on the 'WorldPhones' dataset in the datasets
-# package (which generally comes preloaded).
-library(datasets)
-
-# Define the overall UI
-shinyUI(
-  
-  # Use a fluid Bootstrap layout
-  fluidPage(    
-    
-    # Give the page a title
-    titlePanel("Telephones by region"),
-    
-    # Generate a row with a sidebar
-    sidebarLayout(      
-      
-      # Define the sidebar with one input
-      sidebarPanel(
-        selectInput("region", "Region:", 
-                    choices=colnames(WorldPhones)),
-        hr(),
-        helpText("Data from AT&T (1961) The World's Telephones.")
-      ),
-      
-      # Create a spot for the barplot
-      mainPanel(
-        plotOutput("phonePlot")  
-      )
-      
-    )
-  )
-)
+source("clinical_trial_data.R")
 
 # Define user interface
 shinyUI(
   fluidPage(    
   # Give the page a title
   titlePanel("Clinical Trials Featuring Telemedicine"),
-  # Generate a row with a sidebar
-  sidebarLayout(      
-    # Define the sidebar with one input
-    sidebarPanel(
-      selectInput("sponsor", "Sponsor Type:", choices=levels(trials$sponsor)),
-      hr(),
-      helpText("Data from the World Health Organization (2016) International\
-               Clinical Trial Registry Platform.")
+  p("Application Created By: ",
+  a(href = "https://www.linkedin.com/in/nalettebrodnax/", 
+    "NaLette Brodnax")),
+  p("Data Source: ", a(href = "http://apps.who.int/trialsearch/default.aspx", 
+    "World Health Organization, International Clinical Trial Registry Platform")),
+  p("Data Last Updated: May 30, 2016"),
+  plotOutput("map1", height = "600px", width = "900px"),
+  hr(),
+  h2("Number of Clinical Trials"),
+  mainPanel(
+    tabsetPanel(
+      tabPanel(
+        "By Therapeutic Area",
+        selectInput("sponsor", "Choose Sponsor:", choices=levels(trials$sponsor),
+                    selected = "Commercial"),
+        plotOutput("plot1", width = "900px")
       ),
-    # Create a spot for the barplot
-    mainPanel(
-      plotOutput("plot1"),
-      plotOutput("map1")
+      tabPanel(
+        "By Phase",
+        selectInput("area", "Choose Therapeutic Area:", choices=levels(trials$area),
+                    selected = "Diabetes"),
+        plotOutput("plot2", width = "900px")
+      )
     )
     )
+  #p(),
+  #hr(),
+  #h1("Clinical Trials by Sponsor"),
+  #mainPanel(plotOutput("plot2"))
 )
 )
