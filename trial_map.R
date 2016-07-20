@@ -50,4 +50,4 @@ ggplot(trial_data, aes(map_id = country), na.omit()) +
         axis.ticks=element_blank()) +
   scale_fill_discrete(h = c(0,135), h.start = 0, direction = 1, labels = cat_subset,
                       na.value = "#A59D95")
-ggsave("global_trial_map_discrete.pdf")
+ggsave("global_trial_map_discrete.png")
