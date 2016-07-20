@@ -39,7 +39,8 @@ trials$phase <- factor(trials$phase, levels = c("0", "1", "2", "3", "4"))
 ui <- fluidPage(    
     # Give the page a title
     titlePanel("Clinical Trials Featuring Telemedicine"),
-    mainPanel(p("Created By: NaLette M. Brodnax"), p("Last Updated: May 30, 2016")),
+    mainPanel(p("Created By: NaLette M. Brodnax"), p("Last Updated: May 30, 2016"),
+              img(src = "global_trial_map_discrete.png")),
     # Generate a row with a sidebar
     sidebarLayout(      
       # Define the sidebar with one input
